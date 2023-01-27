@@ -5,7 +5,7 @@ import { StyledText } from './score';
 interface NameStringProps {
 name?: string;
 score?: string;
-color?: string;
+color?: ;
 }
 
 const StyledNameString = styled.div`
