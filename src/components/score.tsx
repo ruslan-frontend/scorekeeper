@@ -9,7 +9,7 @@ color: string;
 const StyledScore = styled.div`
     width: 75px;
     height: 75px;
-    background-color: ${({ color = '#B5B8B1' }) => color};
+    background-color: ${props => props.color || 'grey'};
 `
 
 export const StyledText = styled.p`

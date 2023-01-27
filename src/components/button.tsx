@@ -1,16 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface IButtonProps {
-    position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-    color?: string;
-    size?: 'small' | 'medium' | 'big';
+interface ButtonProps {
+    position?: string;
+    bg?: string;
+    img?: string;
     text?: string;
+    children?: any;
+    color?: string;
+    size: 'small' | 'medium' | 'big';
+    placed?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 }
 
-export const Button = styled.button<IButtonProps>`
-    position: absolute;
-    background-color: ${({ color = '#B5B8B1' }) => color};
+const StyledButton = styled.button<ButtonProps>`
+    position: ${props => props.position || 'static'};
+    background-color: ${props => props.bg || 'none'};
+    font-size: ${props => props.size || '1rem'};
+    color: ${props => props.color || 'grey'};
     width: ${({ size }) => size};
     height: ${({ size }) => size};
 
@@ -19,7 +25,7 @@ export const Button = styled.button<IButtonProps>`
         case 'big':
             return `width: 100px; height: 50%;`;
         case 'medium':
-            return `width: 50px; height: 50px;`;
+            return `width: 75px; height: 75px;`;
         case 'small':
             return `width: 25%; height: 25%;`;
         default:
@@ -27,8 +33,8 @@ export const Button = styled.button<IButtonProps>`
         }
     }}
 
-    ${({ position }) => {
-        switch (position) {
+    ${({ placed }) => {
+        switch (placed) {
         case 'top-left':
             return `top: 0; left: 0;`;
         case 'top-right':
@@ -42,19 +48,15 @@ export const Button = styled.button<IButtonProps>`
         }
     }}
 
-    border: none;
-
-    /* Эффект нажатия */
-    transform: translate(0, 0);
-    &:active {
-        transform: translate(1px, 1px);
-    }
-    /* Тень при нажатии */
-    box-shadow: 2px 2px 2px #d9d9d9;
-
-      /* Текст внутри кнопки */
-    content: ${({ text }) => text};
-    text-align: center;
-    font-size: 20px;
-    padding-top: 10px;
+    border: 1 solid black;
 `;
+
+const Button: React.FC<ButtonProps> = (props) => {
+    return (
+        <StyledButton {...props}>
+            {props.children}
+        </StyledButton>
+    )
+}
+
+export default Button;

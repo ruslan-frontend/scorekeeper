@@ -2,13 +2,14 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 
 interface FlexProps {
-direction: string;
-align?: string;
-justify?: string;
-margin?: string;
+    direction?: 'row' | 'column';
+    align?: 'stretch' | 'center';
+    justify?: 'stretch' | 'center' | 'space-around';
+    margin?: string;
+    children?: React.ReactNode;
 }
 
-const StyledFlex = styled.div`
+const StyledFlex = styled.div<FlexProps>`
     display: flex;
     flex-direction: ${props => props.direction || 'row'};
     align-items: ${props => props.align || 'stretch'};
