@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ScoreProps {
-score: string;
+score: number;
 color: string;
 }
 
@@ -10,6 +10,7 @@ const StyledScore = styled.div`
     width: 75px;
     height: 75px;
     background-color: ${props => props.color || 'grey'};
+    border: 1px solid red;
 `
 
 export const StyledText = styled.p`

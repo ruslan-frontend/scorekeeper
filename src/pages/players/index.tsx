@@ -11,7 +11,8 @@ const StyledImg = styled.img`
     height: 60px;
 `
 
-export const Player: React.FC<PlayerProps> = () => {
+export const Players: React.FC<PlayerProps> = () => {
+    
     return (
         <>
             <PersonLine />
@@ -40,6 +41,7 @@ export const Player: React.FC<PlayerProps> = () => {
                     placed='bottom-left'
                     size='big' 
                     position="absolute"
+                    onClick={() => setScore(0)}
                 >
                     <StyledImg src="./images/refresh.svg" alt="" />
                 </Button>

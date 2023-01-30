@@ -2,10 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ButtonProps {
-    position?: string;
+    position?: 'absolute' | 'relative';
     bg?: string;
-    img?: string;
-    text?: string;
     children?: any;
     color?: string;
     size: 'small' | 'medium' | 'big';
@@ -16,7 +14,6 @@ const StyledButton = styled.button<ButtonProps>`
     position: ${props => props.position || 'static'};
     background-color: ${props => props.bg || 'none'};
     font-size: ${props => props.size || '1rem'};
-    color: ${props => props.color || 'grey'};
     width: ${({ size }) => size};
     height: ${({ size }) => size};
 
