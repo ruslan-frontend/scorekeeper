@@ -1,4 +1,5 @@
-import React from 'react';
+import userEvent from '@testing-library/user-event';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../../components/button';
 import { PersonLine } from '../../components/person-line';
@@ -6,19 +7,37 @@ import { PersonLine } from '../../components/person-line';
 interface PlayerProps {
 }
 
+
 const StyledImg = styled.img`
     width: 60px;
     height: 60px;
 `
 
 export const Players: React.FC<PlayerProps> = () => {
-    
+
+const [data, setData] = useState([{id: 1, name: 'user1', score: 0},{id: 2, name: 'user2', score: 0},{id: 3, name: 'user3', score: 0},{id: 4, name: 'user4', score: 0}]);
+
+const refreshScore = () => {
+    setData(data.map((item) => {
+        item.score = 0;
+        return item
+    }))
+}
+
+
     return (
         <>
-            <PersonLine />
-            <PersonLine />
-            <PersonLine />
-            <PersonLine />
+            {data.map(
+                (item) => (
+                    <PersonLine
+                    key={item.id}
+                    item={item}
+                    data={data}
+                    setData={setData}
+                    />
+                )
+            )}
+            
             
             <div>
                 <Button 
@@ -41,7 +60,7 @@ export const Players: React.FC<PlayerProps> = () => {
                     placed='bottom-left'
                     size='big' 
                     position="absolute"
-                    onClick={() => setScore(0)}
+                    onClick={refreshScore}
                 >
                     <StyledImg src="./images/refresh.svg" alt="" />
                 </Button>

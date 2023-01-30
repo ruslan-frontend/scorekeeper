@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ButtonProps {
-    position?: 'absolute' | 'relative';
+    position?: string;
     bg?: string;
     children?: any;
     color?: string;
     size: 'small' | 'medium' | 'big';
     placed?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+    onClick?: () => void;
 }
 
 const StyledButton = styled.button<ButtonProps>`
@@ -16,6 +17,7 @@ const StyledButton = styled.button<ButtonProps>`
     font-size: ${props => props.size || '1rem'};
     width: ${({ size }) => size};
     height: ${({ size }) => size};
+    font-size: 30px;
 
     ${({ size = 'big' }) => {
     switch (size) {
